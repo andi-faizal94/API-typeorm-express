@@ -8,6 +8,8 @@ export default class Client extends BaseEntity {
   first_name: string;
   @Column()
   last_name: string;
+  @Column()
+  age: number;
   @Column({
     unique: true,
   })
