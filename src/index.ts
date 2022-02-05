@@ -26,7 +26,6 @@ const main = async () => {
       console.log(`now running in PORT ${PORT}`);
     });
   } catch (error) {
-    // console.error(error);
     throw new Error(error);
   }
 };
