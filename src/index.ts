@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm";
 import express from "express";
 import Blog from "./entities/Blog";
-import { getBlog } from "./routes/Blog";
+import { createBlog } from "./routes/Blog";
 const app = express();
 const PORT = 8080;
 const main = async () => {
@@ -20,7 +20,7 @@ const main = async () => {
     });
     console.log("connected");
     app.use(express.json());
-    app.use(getBlog);
+    app.use(createBlog);
 
     app.listen(8080, () => {
       console.log(`now running in PORT ${PORT}`);

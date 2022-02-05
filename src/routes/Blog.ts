@@ -1,27 +1,25 @@
-import express from "express";
+import express, { Response, Request } from "express";
 import Blog from "../entities/Blog";
 
 const router = express.Router();
 
-router.post("/blog", async (req, res) => {
-  const { id, titleBlog, contentBlog } = req.body;
-
-  const blog = Blog.create({
-    id: id,
-    title_blog: titleBlog,
-    content_blog: contentBlog,
-  });
-  // if (id != null) {
-  //   console.log(id);
-  // }
-  // if (titleBlog != null) {
-  //   console.log(JSON.parse(titleBlog));
-  // }
-  // if (contentBlog != null) {
-  //   console.log(JSON.parse(titleBlog));
-  // }
-  await blog.save();
-  return res.json(blog);
+router.post("/blog", async (req: Request, res: Response) => {
+  try {
+    const titleBlog = req.body.title_blog;
+    const contentBlog = req.body.content_blog;
+    const createdAt = req.body.created_at;
+    const updateAt = req.body.updated_at;
+    const blog = Blog.create({
+      title_blog: titleBlog,
+      content_blog: contentBlog,
+      created_at: createdAt,
+      updated_at: updateAt,
+    });
+    await blog.save();
+    return res.json(blog);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
-export { router as getBlog };
+export { router as createBlog };

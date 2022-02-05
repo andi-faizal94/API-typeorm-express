@@ -10,13 +10,13 @@ import {
 @Entity("blog")
 export default class Client extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
-  @Column()
+  id: number = 0;
+  @Column("text", { nullable: true })
   title_blog: string;
-  @Column()
+  @Column("text", { nullable: true })
   content_blog: string;
-  @CreateDateColumn()
-  created_at: Date;
-  @UpdateDateColumn()
-  updated_at: Date;
+  @CreateDateColumn({ type: "timestamptz", default: "now()" })
+  created_at: Date = new Date();
+  @UpdateDateColumn({ type: "timestamptz" })
+  updated_at: Date = new Date();
 }
