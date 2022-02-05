@@ -5,15 +5,17 @@ const router = express.Router();
 
 router.post("/blog", async (req: Request, res: Response) => {
   try {
-    const titleBlog = req.body.title_blog;
-    const contentBlog = req.body.content_blog;
-    const createdAt = req.body.created_at;
-    const updateAt = req.body.updated_at;
+    const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
+    if (!titleBlog) {
+      throw new Error("Error titleBlog");
+    }
+    if (!contentBlog) {
+      throw new Error("Error contentBlog");
+    }
+
     const blog = Blog.create({
       title_blog: titleBlog,
       content_blog: contentBlog,
-      created_at: createdAt,
-      updated_at: updateAt,
     });
     await blog.save();
     return res.json(blog);
