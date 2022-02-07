@@ -5,10 +5,10 @@ export const createBlog = async (req: Request, res: Response) => {
   try {
     const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
     if (!titleBlog) {
-      throw new Error("Error titleBlog");
+      throw new Error("error it's not content in title_blog");
     }
     if (!contentBlog) {
-      throw new Error("Error contentBlog");
+      throw new Error("error it's not content in content_blog");
     }
 
     const blog = Blog.create({
