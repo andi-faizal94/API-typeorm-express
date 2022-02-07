@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import { createConnection } from "typeorm";
 import express from "express";
+import cors from "cors";
 import Blog from "./entities/Blog";
 import {
   createBlog,
@@ -31,6 +33,9 @@ const main = async () => {
     });
     console.log("connected");
     app.use(express.json());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(cors());
     app.use(createBlog);
     app.use(getBlog);
     app.use(getBlogId);
