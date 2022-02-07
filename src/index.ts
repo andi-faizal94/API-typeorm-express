@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import { createConnection } from "typeorm";
 import express from "express";
 import Blog from "./entities/Blog";
@@ -8,17 +9,21 @@ import {
   updateBlog,
   deleteBlog,
 } from "./routes/Blog";
+
+dotenv.config();
+
 const app = express();
 const PORT = 8080;
+const dbConnection: any = process.env.DB_CONNECTION;
 const main = async () => {
   try {
     await createConnection({
-      type: "postgres",
-      host: "localhost",
-      port: 5432,
-      username: "postgres",
-      password: "password",
-      database: "Blog",
+      type: dbConnection,
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: [Blog],
       // don't use synchronize true in production
       synchronize: false,
