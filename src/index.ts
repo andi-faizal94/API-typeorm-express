@@ -31,7 +31,6 @@ const main = async () => {
       synchronize: false,
       logging: false,
     });
-    console.log("connected");
     app.use(express.json());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,7 +42,7 @@ const main = async () => {
     app.use(deleteBlog);
 
     app.listen(8080, () => {
-      console.log(`now running in PORT ${PORT}`);
+      console.log(`connection now running in PORT ${PORT}`);
     });
   } catch (error) {
     throw new Error(error);
