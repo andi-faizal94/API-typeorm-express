@@ -1,4 +1,4 @@
-import express, { Response, Request } from "express";
+import { Response, Request } from "express";
 import Blog from "../entities/Blog";
 
 export const createBlog = async (req: Request, res: Response) => {
