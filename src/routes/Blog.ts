@@ -1,4 +1,4 @@
-import express, { Response, Request } from "express";
+import express from "express";
 import {
   createBlog,
   getBlog,
