@@ -1,7 +1,13 @@
 import { createConnection } from "typeorm";
 import express from "express";
 import Blog from "./entities/Blog";
-import { createBlog, getBlog, getBlogId, deleteBlog } from "./routes/Blog";
+import {
+  createBlog,
+  getBlog,
+  getBlogId,
+  updateBlog,
+  deleteBlog,
+} from "./routes/Blog";
 const app = express();
 const PORT = 8080;
 const main = async () => {
@@ -23,6 +29,7 @@ const main = async () => {
     app.use(createBlog);
     app.use(getBlog);
     app.use(getBlogId);
+    app.use(updateBlog);
     app.use(deleteBlog);
 
     app.listen(8080, () => {

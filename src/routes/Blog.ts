@@ -32,7 +32,7 @@ router.get("/blog", async (req, res) => {
     throw new Error(error);
   }
 });
-// getby id
+// getbyid
 router.get("/blog/:id", async (req, res) => {
   try {
     let id = req.params.id;
@@ -47,6 +47,22 @@ router.get("/blog/:id", async (req, res) => {
 });
 
 // update
+router.put("/blog/:id", async (req, res) => {
+  try {
+    const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
+    const id = req.params.id;
+    const blog = await Blog.update(Number(id), {
+      title_blog: titleBlog,
+      content_blog: contentBlog,
+    });
+    const updateBlog = await Blog.find({
+      id: Number(id),
+    });
+    res.json(updateBlog);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 // delete
 router.delete("/blog/:id", async (req, res) => {
@@ -63,5 +79,6 @@ export {
   router as createBlog,
   router as getBlog,
   router as getBlogId,
+  router as updateBlog,
   router as deleteBlog,
 };
