@@ -42,7 +42,7 @@ const main = async () => {
     app.use(deleteBlog);
 
     app.listen(8080, () => {
-      console.log(`connection now running in PORT ${PORT}`);
+      console.log(`server now running in PORT ${PORT}`);
     });
   } catch (error) {
     throw new Error(error);
