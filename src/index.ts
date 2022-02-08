@@ -30,6 +30,11 @@ const main = async () => {
       // don't use synchronize true in production
       synchronize: false,
       logging: false,
+      migrationsRun: false,
+      migrations: ["src/migrations/*.ts"],
+      cli: {
+        migrationsDir: "src/migrations",
+      },
     });
     app.use(express.json());
     app.use(bodyParser.json());
