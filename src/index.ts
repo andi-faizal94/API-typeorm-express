@@ -31,12 +31,12 @@ const main = async () => {
       synchronize: false,
       logging: false,
       migrationsRun: false,
-      migrations: ["src/migrations/*.ts"],
+      migrations: ["dist/src/migrations/*.ts"],
       cli: {
         migrationsDir: "src/migrations",
       },
     });
-    app.use(express.json());
+    // app.use(express.json());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cors());
