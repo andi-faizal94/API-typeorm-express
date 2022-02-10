@@ -3,40 +3,23 @@ import bodyParser from "body-parser";
 import { createConnection } from "typeorm";
 import express from "express";
 import cors from "cors";
-import Blog from "./entities/Blog";
 import {
   createBlog,
   getBlog,
   getBlogId,
   updateBlog,
   deleteBlog,
-} from "./routes/Blog";
+} from "./routes/blog";
+import db from "./database/database";
 
 dotenv.config();
 
 const app = express();
-const PORT = 8080;
-const dbConnection: any = process.env.DB_CONNECTION;
+const PORT = process.env.BASEPORT;
+
 const main = async () => {
   try {
-    await createConnection({
-      type: dbConnection,
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      entities: [Blog],
-      // don't use synchronize true in production
-      synchronize: false,
-      logging: false,
-      migrationsRun: false,
-      migrations: ["dist/src/migrations/*.ts"],
-      cli: {
-        migrationsDir: "src/migrations",
-      },
-    });
-    // app.use(express.json());
+    await createConnection(db);
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cors());
@@ -46,7 +29,7 @@ const main = async () => {
     app.use(updateBlog);
     app.use(deleteBlog);
 
-    app.listen(8080, () => {
+    app.listen(PORT, () => {
       console.log(`server now running in PORT ${PORT}`);
     });
   } catch (error) {
