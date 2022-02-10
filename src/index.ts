@@ -30,7 +30,7 @@ const main = async () => {
     app.use(deleteBlog);
 
     app.listen(PORT, () => {
-      console.log(`server now running in PORT ${PORT}`);
+      console.log(`listening server now running in PORT ${PORT}`);
     });
   } catch (error) {
     throw new Error(error);
