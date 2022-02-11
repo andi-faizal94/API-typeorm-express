@@ -5,7 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js --config src/index.ts"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm migration:generate"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +20,11 @@
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
-    "ts-node": "^10.4.0",
     "typeorm": "^0.2.41",
     "typescript": "^4.5.5"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.12"
+    "@types/cors": "^2.8.12",
+    "ts-node": "^10.5.0"
   }
 }

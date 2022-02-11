@@ -16,7 +16,6 @@ export default {
   // don't use synchronize true in production
   synchronize: false,
   logging: false,
-  migrationsRun: false,
   migrations: ["dist/src/migrations/*.ts"],
   cli: {
     migrationsDir: "src/migrations",
