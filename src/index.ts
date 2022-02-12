@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
-import { createConnection } from "typeorm";
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
+import { createConnection } from "typeorm";
 import {
   createBlog,
   getBlog,
