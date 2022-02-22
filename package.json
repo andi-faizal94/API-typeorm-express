@@ -1,13 +1,11 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
-    "migration:generate": "npm run typeorm migration:generate"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +24,14 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "ts-node": "^10.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andi-faizal94/API-typeorm-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andi-faizal94/API-typeorm-express/issues"
+  },
+  "homepage": "https://github.com/andi-faizal94/API-typeorm-express#readme",
+  "description": ""
 }
