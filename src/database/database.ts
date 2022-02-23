@@ -1,10 +1,18 @@
 import dotenv from "dotenv";
 import Blog from "../entities/Blog";
-
+import * as path from "path";
+import * as fs from "fs";
 dotenv.config();
 
 const dbConnection: any = process.env.DB_CONNECTION;
 
+// const path_migrations = path.join(__dirname, "..", "migrations");
+// const migrations = [];
+// fs.readdirSync(path_migrations).forEach(function (migrate) {
+//   migrations.push(require(path.join(path_migrations, migrate)));
+// });
+
+console.log(process.env);
 export default {
   type: dbConnection,
   host: process.env.DB_HOST,
