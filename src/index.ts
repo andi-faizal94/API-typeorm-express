@@ -4,7 +4,6 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { createConnection } from "typeorm";
 import {
-  uploadFile,
   createBlog,
   getBlog,
   getBlogId,
@@ -24,7 +23,6 @@ const main = async () => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cors());
-    app.use(uploadFile);
     app.use(createBlog);
     app.use(getBlog);
     app.use(getBlogId);
