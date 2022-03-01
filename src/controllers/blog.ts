@@ -9,10 +9,10 @@ export const createBlog = async (
   try {
     const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
     if (!titleBlog) {
-      throw Error("error it's not content in title_blog");
+      throw new Error("error it's not content in title_blog");
     }
     if (!contentBlog) {
-      throw Error("error it's not content in content_blog");
+      throw new Error("error it's not content in content_blog");
     }
 
     const blog = Blog.create({
@@ -46,7 +46,7 @@ export const getBlogById = async (
   try {
     const { id } = req.params;
     if (!id) {
-      throw Error("it not id");
+      throw new Error("it not id");
     }
     const getBlogById = await Blog.findOne(Number(id));
     return res.status(200).json(getBlogById);
@@ -64,13 +64,13 @@ export const updateBlog = async (
     const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
     const { id } = req.params;
     if (!id) {
-      throw Error("error it's not id");
+      throw new Error("error it's not id");
     }
     if (!titleBlog) {
-      throw Error("error it's not content in title_blog");
+      throw new Error("error it's not content in title_blog");
     }
     if (!contentBlog) {
-      throw Error("error it's not content in content_blog");
+      throw new Error("error it's not content in content_blog");
     }
 
     await Blog.update(Number(id), {
@@ -92,6 +92,9 @@ export const deleteBlog = async (
 ): Promise<any> => {
   try {
     const { id } = req.params;
+    if (!id) {
+      throw new Error("it not id");
+    }
     const deleteBlog = await Blog.delete(Number(id));
     return res.status(200).json(deleteBlog);
   } catch (error) {
