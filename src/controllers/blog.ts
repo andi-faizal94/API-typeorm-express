@@ -7,9 +7,20 @@ export const createBlog = async (
   next: NextFunction
 ): Promise<any> => {
   try {
+    // const {
+    //   title_blog: titleBlog,
+    //   image_blog: image,
+    //   content_blog: contentBlog,
+    // } = req.body;
+
     const { title_blog: titleBlog, content_blog: contentBlog } = req.body;
+    const image = req.file?.path;
+    // const {image_blog: image} = req.file.path;
     if (!titleBlog) {
       throw new Error("error it's not content in title_blog");
+    }
+    if (!image) {
+      throw new Error("error it's not image");
     }
     if (!contentBlog) {
       throw new Error("error it's not content in content_blog");
@@ -18,6 +29,7 @@ export const createBlog = async (
     const blog = Blog.create({
       title_blog: titleBlog,
       content_blog: contentBlog,
+      image,
     });
     await blog.save();
     return res.status(201).json(blog);
