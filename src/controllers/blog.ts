@@ -59,7 +59,7 @@ export const getBlogById = async (
 
     const getBlogById = await Blog.findOne(Number(id));
     console.log(getBlogById);
-    return res.status(200).json({ message: "", data: getBlogById });
+    return res.status(200).json({ message: "succesfully", data: getBlogById });
   } catch (error) {
     console.error(error);
     next(error);
