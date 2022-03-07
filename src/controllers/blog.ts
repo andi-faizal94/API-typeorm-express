@@ -25,9 +25,12 @@ export const createBlog = async (
       image,
     });
     await blog.save();
-    return res.status(201).json(blog);
+    return res.status(201).json({
+      message: "created blog succesfully",
+      data: blog,
+    });
   } catch (error) {
-    next(error);
+    next({ message: error });
   }
 };
 
@@ -53,9 +56,12 @@ export const getBlogById = async (
     if (!id) {
       throw new Error("it not id");
     }
+
     const getBlogById = await Blog.findOne(Number(id));
-    return res.status(200).json(getBlogById);
+    console.log(getBlogById);
+    return res.status(200).json({ message: "", data: getBlogById });
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };

@@ -56,6 +56,13 @@ const main = async () => {
       }
     };
 
+    const upload = multer({
+      storage: fileStorage,
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+      fileFilter: fileFilter,
+    });
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(
