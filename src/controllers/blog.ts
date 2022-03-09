@@ -56,7 +56,9 @@ export const getBlogById = async (
     if (!id) {
       throw new Error("it not id");
     }
-
+    if (id === undefined) {
+      throw new Error("id not found");
+    }
     const getBlogById = await Blog.findOne(Number(id));
     console.log(getBlogById);
     return res.status(200).json({ message: "succesfully", data: getBlogById });
