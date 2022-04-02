@@ -11,7 +11,7 @@ export default {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [Blog],
+  entities: ["src/entities/*.ts"],
   // don't use synchronize true in production
   synchronize: false,
   logging: false,

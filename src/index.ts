@@ -63,8 +63,8 @@ const main = async () => {
       },
       fileFilter: fileFilter,
     });
-    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
     app.use(
       multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
     );
