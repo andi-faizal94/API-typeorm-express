@@ -3,13 +3,7 @@ import express, { Request } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { createConnection } from "typeorm";
-import {
-  createBlog,
-  getBlog,
-  getBlogId,
-  updateBlog,
-  deleteBlog,
-} from "./routes/blog";
+import router from "./routes/blog";
 import db from "./database/database";
 import multer, { FileFilterCallback } from "multer";
 
@@ -69,11 +63,7 @@ const main = async () => {
       multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
     );
     app.use(cors());
-    app.use(createBlog);
-    app.use(getBlog);
-    app.use(getBlogId);
-    app.use(updateBlog);
-    app.use(deleteBlog);
+    app.use(router);
 
     app.listen(PORT, () => {
       console.log(`listening server now running in PORT ${PORT}`);
